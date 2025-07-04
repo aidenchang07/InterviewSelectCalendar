@@ -1,6 +1,7 @@
 package com.example.interviewselectcalendar.presentation
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
@@ -51,7 +52,12 @@ fun MainScreen() {
             )
         }
     ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = innerPadding
+        ) {
 
+        }
     }
 }
 
