@@ -33,7 +33,7 @@ import java.time.temporal.TemporalAdjusters
  */
 @Composable
 fun MainScreenRoot(
-    viewmodel: MainViewmodel
+    viewmodel: MainViewModel
 ) {
     val state by viewmodel.uiState.collectAsState()
     MainScreen(state)

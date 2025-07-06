@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Created by AidenChang on 2025/7/5
  */
-class MainViewmodel : ViewModel() {
+class MainViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(UiState.Loading)
     val uiState = _uiState.asStateFlow()
 }
