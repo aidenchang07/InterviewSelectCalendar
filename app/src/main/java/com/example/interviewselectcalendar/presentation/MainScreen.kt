@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.interviewselectcalendar.domain.model.SelectCalendarData
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -29,9 +31,17 @@ import java.time.temporal.TemporalAdjusters
 /**
  * Created by AidenChang on 2025/7/5
  */
+@Composable
+fun MainScreenRoot(
+    viewmodel: MainViewmodel
+) {
+    val state by viewmodel.uiState.collectAsState()
+    MainScreen(state)
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(state: UiState<SelectCalendarData>) {
     val today by remember { mutableStateOf(LocalDate.now()) }
     var startDate by remember { mutableStateOf(today) }
     var endDate by remember { mutableStateOf(today.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY))) }
@@ -93,5 +103,9 @@ fun MainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    MainScreen(
+        UiState.Success(
+            SelectCalendarData()
+        )
+    )
 }
